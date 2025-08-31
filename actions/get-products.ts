@@ -17,10 +17,10 @@ interface Query {
     isFeatured?: boolean;
 }
 
-const getProducts = async (query: Query): Promise<ResponseType> => {
+const getProducts = async (query: Query): Promise<Product[]> => {
     const url = qs.stringifyUrl({
         url: URL,
-        query:{
+        query: {
             colorId: query.colorId,
             categoryId: query.categoryId,
             sizeId: query.sizeId,
@@ -29,17 +29,12 @@ const getProducts = async (query: Query): Promise<ResponseType> => {
     })
     try {
         const res = await fetch(url);
-    
-        return await res.json();
+        const json: ResponseType = await res.json();
+        return json?.data;
     } catch (error) {
         console.error('Error fetching Products:', error);
         // fallback response
-        return {
-            success: false,
-            message: 'Failed to fetch Products',
-            data: []
-        };
-
+        return []
     }
 }
 

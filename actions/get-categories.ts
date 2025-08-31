@@ -8,20 +8,15 @@ interface ResponseType {
     data: Category[];
 }
 
-const getCategories = async (): Promise<ResponseType> => {
+const getCategories = async (): Promise<Category[]> => {
     try {
         const res = await fetch(URL);
-    
-        return await res.json();
+        const json: ResponseType = await res.json();
+        return json?.data;
     } catch (error) {
         console.error('Error fetching categories:', error);
         // fallback response
-        return {
-            success: false,
-            message: 'Failed to fetch categories',
-            data: []
-        };
-
+        return [];
     }
 }
 
