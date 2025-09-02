@@ -5,6 +5,10 @@ import "./globals.css";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 
+import ModalProvider from "@/providers/modal-provider";
+import { ReduxProvider } from "@/providers/redux-provider";
+import { ToasterProvider } from "@/providers/toast-provider";
+
 const fonts = Urbanist({
   subsets: ["latin"],
 });
@@ -24,9 +28,13 @@ export default function RootLayout({
       <body
         className={fonts.className}
       >
-        <Navbar/>
-        {children}
-        <Footer />
+        <ReduxProvider>
+          <ModalProvider/>
+          <ToasterProvider/>
+          <Navbar/>
+          {children}
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   );
