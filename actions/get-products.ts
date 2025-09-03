@@ -15,6 +15,7 @@ interface Query {
     sizeId?: string;
     colorId?: string;
     isFeatured?: boolean;
+    isArchived?: boolean
 }
 
 const getProducts = async (query: Query): Promise<Product[]> => {
@@ -24,7 +25,8 @@ const getProducts = async (query: Query): Promise<Product[]> => {
             colorId: query.colorId,
             categoryId: query.categoryId,
             sizeId: query.sizeId,
-            isFeatured: query.isFeatured
+            isFeatured: query?.isFeatured,
+            isArchived: query?.isArchived,
         },
     })
     try {

@@ -28,6 +28,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
             text-white
             font-semibold
             hover:opacity-75
+            cursor-pointer
             transition
           `,
           className

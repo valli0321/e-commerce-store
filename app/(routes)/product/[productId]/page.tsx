@@ -21,7 +21,8 @@ const ProductPage: React.FC<ProductPageProps> = async ({
     const product = await getProduct(productId);
 
     const suggestedProducts = await getProducts({
-        categoryId: product?.category?.id
+        categoryId: product?.category?.id,
+        isArchived: false,
     })
 
     return (
